@@ -137,7 +137,7 @@ $data = $datos->mostrarDatos();
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="resp_datos.php">
+                                    <form method="POST" action="resp_datos.php" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="nombre">Nombre:</label>
                                             <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $data['nombre'];?>">
@@ -207,6 +207,23 @@ $data = $datos->mostrarDatos();
                                                 <label for="envio_monto">Monto</label>
                                                 <input type="text" class="form-control" name="envio_monto" value="<?php echo $data['monto'];?>">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="imagen">Imagen</label>
+                                                    <input type="file" class="form-control" name="imagen" id="imagen" value="<?php echo $data['imagen'];?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 text-center">
+                                            <?php if($data['imagen'] != ""){?>
+                                                <br>
+                                                <br>
+                                                <img src="../imagenes/logo/<?php echo $data['imagen'];?>" class="rounded-circle mt-3" width="100" height="100"> 
+                                                <br>
+                                                <br>
+                                            <?php } ?>
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Guardar</button>

@@ -86,6 +86,9 @@ $cats = $categorias->listarCategorias();
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="bd-placeholder-img">
       <div class="container">
+        <?php if (!empty($data['imagen'])){?>
+        <img src="imagenes/logo/<?php echo $data['imagen'];?>" class="rounded-circle mt-3" width="150" height="150"> 
+        <?php }?>
         <h1 class="display-3 text-white sombra"><?php echo $data['nombre'] ?></h1>
         <p class="text-white"><?php echo $data['descripcion'] ?></p>
         <p class="text-white">Forma de entrega: <?php echo $data['entrega'] ?></p>

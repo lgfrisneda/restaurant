@@ -22,12 +22,31 @@ class Datos
 		return $restaurant;
 	}
 
-	public function editDatos($nombre, $descripcion, $telefono_local, $whatsapp, $direccion, $pago, $entrega, $envio, $monto)
+	public function editDatos($nombre, $descripcion, $telefono_local, $whatsapp, $direccion, $pago, $entrega, $envio, $monto, $imagen)
 	{
 		if(!empty($monto)){
 			$monto_sql = ", monto = :monto";
 		}else{
 			$monto_sql = "";
+		}
+
+		if(!empty($imagen)){
+			$sentencia = $this->conn->prepare("SELECT imagen FROM datos 
+			WHERE id = '1'");
+
+			$sentencia->execute();
+
+			$imgOld = $sentencia->fetch(PDO::FETCH_LAZY);
+
+			if(!empty($imgOld['imagen'])){
+				if(file_exists("../imagenes/logo/".$imgOld['imagen'])){
+					unlink("../imagenes/logo/".$imgOld['imagen']);
+				}
+			}
+		
+			$img_sql = ", imagen = :imagen";
+		}else{
+			$img_sql = "";
 		}
 
 		$sql = "UPDATE datos 
@@ -39,7 +58,8 @@ class Datos
 				pago = :pago,
 				entrega = :entrega,
 				envio = :envio".
-				$monto_sql."
+				$monto_sql.
+				$img_sql."
 				WHERE id = '1'";
 		$sentencia = $this->conn->prepare($sql);
 		$sentencia->bindParam(':nombre',$nombre);
@@ -52,6 +72,9 @@ class Datos
 		$sentencia->bindParam(':envio',$envio);
 		if(!empty($monto)){
 			$sentencia->bindParam(':monto',$monto);
+		}
+		if(!empty($imagen)){
+			$sentencia->bindParam(':imagen',$imagen);
 		}
 		
 		if($sentencia->execute()){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2020 a las 21:57:02
+-- Tiempo de generación: 29-06-2020 a las 01:17:38
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -49,15 +49,16 @@ CREATE TABLE `datos` (
   `pago` varchar(255) NOT NULL,
   `entrega` varchar(255) NOT NULL,
   `envio` varchar(255) NOT NULL,
-  `monto` varchar(20) NOT NULL
+  `monto` varchar(20) NOT NULL,
+  `imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `datos`
 --
 
-INSERT INTO `datos` (`id`, `nombre`, `descripcion`, `telefono_local`, `whatsapp`, `direccion`, `pago`, `entrega`, `envio`, `monto`) VALUES
-(1, 'Nombre de restaurant', 'Descripcion de restaurant', '(1234)0987654/(0293)3272367', '0123456789', 'Direccion del restaurant, ubicacion, calle, avenida, distrito.', 'Efectivo-Tarjeta', 'Delivery-Take away', 'Precio fijo', '123');
+INSERT INTO `datos` (`id`, `nombre`, `descripcion`, `telefono_local`, `whatsapp`, `direccion`, `pago`, `entrega`, `envio`, `monto`, `imagen`) VALUES
+(1, 'Nombre de restaurant', 'Descripcion de restaurant', '(1234)0987654/(0293)3272367', '0123456789', 'Direccion del restaurant, ubicacion, calle, avenida, distrito.', 'Efectivo-Tarjeta', 'Delivery-Take away', 'Gratis', '123', '1593385837_descarga.jpg');
 
 -- --------------------------------------------------------
 

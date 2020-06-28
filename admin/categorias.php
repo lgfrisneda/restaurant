@@ -79,7 +79,7 @@ $item = 1;
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="POST" action="resp_productos.php">
+                                        <form method="POST" action="resp_productos.php" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="id_categoria">Categoría:</label>
                                                 <select class="form-control" name="id_categoria" id="id_categoria">
@@ -100,6 +100,10 @@ $item = 1;
                                             <div class="form-group">
                                                 <label for="precio">Precio producto (opcional):</label>
                                                 <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio de producto">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="imagen">Imagen:</label>
+                                                <input type="file" class="form-control" name="imagen" id="imagen" value="">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                         </form>
@@ -152,7 +156,7 @@ $item = 1;
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <form method="POST" action="resp_productos.php">
-                                                                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo  $producto['id'];?>">
+                                                                        <input type="hidden" class="form-control" name="id" id="id" value="<?php echo  $producto['id'];?>">
                                                                         <div class="form-group">
                                                                             <label for="id_categoria">Categoría:</label>
                                                                             <select class="form-control" name="id_categoria" id="id_categoria">
