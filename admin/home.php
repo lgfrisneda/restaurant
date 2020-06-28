@@ -109,10 +109,13 @@ $data = $datos->mostrarDatos();
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <h5 class="mb-0">Modo de envio:</h5>
+                                                        <h5 class="mb-0">Costo de envio:</h5>
                                                     </td>
                                                     <td>
-                                                        <?php echo $data['envio'];?>
+                                                        <?php 
+                                                            echo $data['envio'];
+                                                            echo ($data['envio'] == "Precio fijo")? " - ".$data['monto']: "";
+                                                        ?>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -162,38 +165,47 @@ $data = $datos->mostrarDatos();
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="pago">Modo de pago</label>
                                                     <select class="form-control" name="pago" id="pago">
                                                         <option value="<?php echo $data['pago'];?>"><?php echo $data['pago'];?></option>
                                                         <option value="Efectivo">Efectivo</option>
                                                         <option value="Tarjeta">Tarjeta</option>
-                                                        <option value="Ambos">Ambos</option>
+                                                        <option value="Efectivo-Tarjeta">Ambos</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="entrega">Modo de entrega</label>
                                                     <select class="form-control" name="entrega" id="entrega">
                                                         <option value="<?php echo $data['entrega'];?>"><?php echo $data['entrega'];?></option>
                                                         <option value="Delivery">Delivery</option>
                                                         <option value="Take away">Take away</option>
-                                                        <option value="Ambos">Ambos</option>
+                                                        <option value="Delivery-Take away">Ambos</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="envio">Costo de envío</label>
-                                                    <select class="form-control" name="envio" id="envio">
+                                                    <select class="form-control" name="envio" id="envio" onchange="mostrarOcultarInput()">
                                                         <option value="<?php echo $data['envio'];?>"><?php echo $data['envio'];?></option>
                                                         <option value="Precio fijo">Precio fijo</option>
                                                         <option value="Indicar importe">Indicar importe</option>
                                                         <option value="Variable">Variable</option>
                                                         <option value="Gratis">Gratis</option>
                                                     </select>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"  id="envio_monto" style="display: none;">
+                                                <div class="form-group">
+                                                <label for="envio_monto">Monto</label>
+                                                <input type="text" class="form-control" name="envio_monto" value="<?php echo $data['monto'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -219,5 +231,15 @@ $data = $datos->mostrarDatos();
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="dist/assets/demo/datatables-demo.js"></script>
+        <script>
+            function mostrarOcultarInput(){
+                getSelectValue = document.getElementById("envio").value;
+                if(getSelectValue=="Precio fijo"){
+                    document.getElementById("envio_monto").style.display = "inline-block";
+                }else{
+                    document.getElementById("envio_monto").style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

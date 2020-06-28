@@ -72,37 +72,41 @@ $item = 1;
                         <div class="modal fade" id="addProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Producto</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="resp_productos.php">
-                                        <div class="form-group">
-                                            <label for="id_categoria">Categoría:</label>
-                                            <select class="form-control" name="id_categoria" id="id_categoria">
-                                                <option>Seleccione</option>
-                                                <?php foreach($cats as $categoria){?>
-                                                    <option value="<?php echo $categoria['id'];?>"><?php echo $categoria['nombre'];?></option>
-                                                <?php }?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nombre">Nombre:</label>
-                                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre de producto">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="descripcion">Descripcion:</label>
-                                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                </div>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Producto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="resp_productos.php">
+                                            <div class="form-group">
+                                                <label for="id_categoria">Categoría:</label>
+                                                <select class="form-control" name="id_categoria" id="id_categoria">
+                                                    <option>Seleccione</option>
+                                                    <?php foreach($cats as $categoria){?>
+                                                        <option value="<?php echo $categoria['id'];?>"><?php echo $categoria['nombre'];?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre de producto">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="descripcion">Descripcion:</label>
+                                                <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="precio">Precio producto (opcional):</label>
+                                                <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio de producto">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -129,11 +133,56 @@ $item = 1;
                                                     ?>
                                                     <tr class="d-flex">
                                                         <td class="col-sm-3"><?php echo $producto['nombre'];?></td>
-                                                        <td class="col-sm-8"><?php echo $producto['descripcion'];?></td>
-                                                        <td class="col-sm-1">
+                                                        <td class="col-sm-6"><?php echo $producto['descripcion'];?></td>
+                                                        <td class="col-sm-1"><?php echo $producto['precio'];?></td>
+                                                        <td class="col-sm-2">
+                                                            <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#editProducto<?php echo  $producto['id'];?>"><i class="fas fa-pen"></i></button>
                                                             <a onClick="validarborrarPro(<?php echo  $producto['id'];?>,'<?php echo  $producto['nombre'];?>')"><button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button></a>
                                                         </td>
                                                     </tr>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="editProducto<?php echo  $producto['id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Producto</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="POST" action="resp_productos.php">
+                                                                    <input type="hidden" class="form-control" name="id" id="id" value="<?php echo  $producto['id'];?>">
+                                                                        <div class="form-group">
+                                                                            <label for="id_categoria">Categoría:</label>
+                                                                            <select class="form-control" name="id_categoria" id="id_categoria">
+                                                                                <option>Seleccione</option>
+                                                                                <?php foreach($cats as $categoria){?>
+                                                                                    <option value="<?php echo $categoria['id'];?>" <?php echo ($producto['id_categoria'] == $categoria['id'])? "Selected":"";?>><?php echo $categoria['nombre'];?></option>
+                                                                                <?php }?>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="nombre">Nombre:</label>
+                                                                            <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $producto['nombre'];?>">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="descripcion">Descripcion:</label>
+                                                                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"><?php echo $producto['descripcion'];?></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="precio">Precio producto (opcional):</label>
+                                                                            <input type="text" class="form-control" name="precio" id="precio" value="<?php echo $producto['precio'];?>">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary">Modificar</button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <?php
                                                     }
                                                     ?>

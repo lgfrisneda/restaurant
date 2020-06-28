@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2020 a las 01:45:01
+-- Tiempo de generación: 28-06-2020 a las 21:57:02
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -48,15 +48,16 @@ CREATE TABLE `datos` (
   `direccion` text NOT NULL,
   `pago` varchar(255) NOT NULL,
   `entrega` varchar(255) NOT NULL,
-  `envio` varchar(255) NOT NULL
+  `envio` varchar(255) NOT NULL,
+  `monto` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `datos`
 --
 
-INSERT INTO `datos` (`id`, `nombre`, `descripcion`, `telefono_local`, `whatsapp`, `direccion`, `pago`, `entrega`, `envio`) VALUES
-(1, 'Nombre de restaurant', 'Descripcion de restaurant', '(1234)0987654/(0293)3272367', '0123456789', 'Direccion del restaurant, ubicacion, calle, avenida, distrito.', 'Ambos', 'Ambos', 'Gratis');
+INSERT INTO `datos` (`id`, `nombre`, `descripcion`, `telefono_local`, `whatsapp`, `direccion`, `pago`, `entrega`, `envio`, `monto`) VALUES
+(1, 'Nombre de restaurant', 'Descripcion de restaurant', '(1234)0987654/(0293)3272367', '0123456789', 'Direccion del restaurant, ubicacion, calle, avenida, distrito.', 'Efectivo-Tarjeta', 'Delivery-Take away', 'Precio fijo', '123');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` text NOT NULL
+  `descripcion` text NOT NULL,
+  `precio` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

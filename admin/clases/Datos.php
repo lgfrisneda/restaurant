@@ -22,8 +22,14 @@ class Datos
 		return $restaurant;
 	}
 
-	public function editDatos($nombre, $descripcion, $telefono_local, $whatsapp, $direccion, $pago, $entrega, $envio)
+	public function editDatos($nombre, $descripcion, $telefono_local, $whatsapp, $direccion, $pago, $entrega, $envio, $monto)
 	{
+		if(!empty($monto)){
+			$monto_sql = ", monto = :monto";
+		}else{
+			$monto_sql = "";
+		}
+
 		$sql = "UPDATE datos 
 				SET nombre = :nombre,
 				descripcion = :descripcion,
@@ -32,7 +38,8 @@ class Datos
 				direccion = :direccion,
 				pago = :pago,
 				entrega = :entrega,
-				envio = :envio
+				envio = :envio".
+				$monto_sql."
 				WHERE id = '1'";
 		$sentencia = $this->conn->prepare($sql);
 		$sentencia->bindParam(':nombre',$nombre);
@@ -43,6 +50,9 @@ class Datos
 		$sentencia->bindParam(':pago',$pago);
 		$sentencia->bindParam(':entrega',$entrega);
 		$sentencia->bindParam(':envio',$envio);
+		if(!empty($monto)){
+			$sentencia->bindParam(':monto',$monto);
+		}
 		
 		if($sentencia->execute()){
 			$_SESSION['mensaje'] = "Datos modificados con éxito";
