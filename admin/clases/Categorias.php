@@ -60,6 +60,23 @@ class Categorias
         $sentencia = $this->conn->prepare($sql);
         $sentencia->bindParam(':id',$id);
         $sentencia->execute();
+
+        $sentencia = $this->conn->prepare("SELECT imagen FROM productos 
+			WHERE id_categoria = :id_categoria");
+
+        $sentencia->bindParam(':id_categoria',$id);
+		$sentencia->execute();
+
+        $imgOld = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($imgOld as $img){
+            if(!empty($img['imagen'])){
+                if(file_exists("../imagenes/".$img['imagen'])){
+                    unlink("../imagenes/".$img['imagen']);
+                }
+            }
+        }
+
         $sql = "DELETE FROM productos WHERE id_categoria = :id_categoria";
         $sentencia = $this->conn->prepare($sql);
         $sentencia->bindParam(':id_categoria',$id);

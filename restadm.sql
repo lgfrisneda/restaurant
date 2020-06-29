@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-06-2020 a las 01:17:38
+-- Tiempo de generación: 29-06-2020 a las 02:17:41
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -71,7 +71,8 @@ CREATE TABLE `productos` (
   `id_categoria` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `descripcion` text NOT NULL,
-  `precio` varchar(20) NOT NULL
+  `precio` varchar(20) NOT NULL,
+  `imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

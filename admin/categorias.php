@@ -155,7 +155,7 @@ $item = 1;
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form method="POST" action="resp_productos.php">
+                                                                    <form method="POST" action="resp_productos.php" enctype="multipart/form-data">
                                                                         <input type="hidden" class="form-control" name="id" id="id" value="<?php echo  $producto['id'];?>">
                                                                         <div class="form-group">
                                                                             <label for="id_categoria">Categoría:</label>
@@ -177,6 +177,23 @@ $item = 1;
                                                                         <div class="form-group">
                                                                             <label for="precio">Precio producto (opcional):</label>
                                                                             <input type="text" class="form-control" name="precio" id="precio" value="<?php echo $producto['precio'];?>">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="imagen">Imagen:</label>
+                                                                                    <input type="file" class="form-control" name="imagen" id="imagen" value="<?php echo $producto['imagen']?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6 text-center">
+                                                                            <?php if($producto['imagen'] != ""){?>
+                                                                                <br>
+                                                                                <br>
+                                                                                <img src="../imagenes/<?php echo $producto['imagen'];?>" class="rounded-circle mt-3" width="100" height="100">
+                                                                                <br>
+                                                                                <br>
+                                                                            <?php } ?>
+                                                                            </div>
                                                                         </div>
                                                                         <button type="submit" class="btn btn-primary">Modificar</button>
                                                                     </form>

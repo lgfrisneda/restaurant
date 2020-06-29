@@ -112,6 +112,9 @@ $cats = $categorias->listarCategorias();
           foreach ($prods as $producto) {
           ?>
             <div class="media text-muted pt-3">
+              <?php if (!empty($producto['imagen'])){?>
+              <img src="imagenes/<?php echo $producto['imagen'];?>" class="rounded-circle mr-2" width="40" height="40"> 
+              <?php }?>
               <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <strong class="d-block text-gray-dark"><?php echo $producto['nombre'] ?></strong>
                 <?php echo $producto['descripcion'] ?>
